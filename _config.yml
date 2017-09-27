@@ -79,4 +79,4 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/heekei/blog.git
-  branch: gh-pages
+  branch: master
