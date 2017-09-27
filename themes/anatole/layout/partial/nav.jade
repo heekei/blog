@@ -2,9 +2,9 @@
   .nav
     li
       if is_home()
-        a.current(href="/")= __('Home')					
+        a.current(href="/blog")= __('Home')					
       else
-        a(href="/")= __('Home')	
+        a(href="/blog")= __('Home')	
     li
       if is_current('about')
         a.current(href="/blog/about")= __('About')			
