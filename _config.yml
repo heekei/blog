@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Heekei's Blog
+title: 庄希琦
 subtitle:
 description:
 author: Heekei
@@ -72,7 +72,12 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: alpha-dust
+theme: anatole
+archive_generator:
+  per_page: 0  
+  yearly: false
+  monthly: false
+  daily: false
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
