@@ -7,10 +7,11 @@ date: 2015-01-11 09:28:30
 tags:
 ---
 
-    &lt;!doctype html&gt;
-    &lt;html&gt;
-    &lt;head&gt;
-    &lt;style&gt;
+    ```html
+    <!doctype html>
+    <html>
+    <head>
+    <style>
     #aa{
     position:absolute;
     width:50px;
@@ -28,11 +29,12 @@ tags:
     100%{background:black;top:0px;left:200px;}
     }
 
-    &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
+    </style>
+    </head>
+    <body>
 
-    &lt;a id="aa"&gt;&lt;/a&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
+    <a id="aa"></a>
+    </body>
+    </html>
+    ```
     
