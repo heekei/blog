@@ -78,7 +78,7 @@ archive_generator:
   yearly: false
   monthly: false
   daily: false
-
+disqus_shortname: heekei-blog
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
