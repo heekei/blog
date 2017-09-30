@@ -19,7 +19,12 @@
       if is_current('links')
         a.current(href="/blog/links")= __('Links')					
       else
-        a(href="/blog/links")= __('Links')		
+        a(href="/blog/links")= __('Links')
+    li
+      if is_current('tools')
+        a.current(href="/blog/tools")= __('Tools')					
+      else
+        a(href="/blog/tools")= __('Tools')	
   .information
     .back_btn
       li
