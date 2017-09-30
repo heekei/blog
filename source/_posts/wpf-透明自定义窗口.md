@@ -15,9 +15,7 @@ date: 2016-01-02 17:07:00
 突然发现忘记加上程序的标题了，算了，懒得添加了。
 
 MainWindow.xaml代码如下：
-
-MainWindow.xaml.cs代码如下：
-
+```cs
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -158,3 +156,4 @@ MainWindow.xaml.cs代码如下：
             }
         }
     }
+```
