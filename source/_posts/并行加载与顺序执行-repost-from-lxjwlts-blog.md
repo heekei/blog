@@ -33,7 +33,7 @@ Javascript文件（下面简称脚本文件）需要被HTML文件引用才能在
 
     下面用张动态图来说明：
 
-    ![传统方法图片失效](https://www.heekei.cn/wp-content/uploads/2016/01/logo.png)
+    ![图片失效]()
 
     上图有两点是需要注意的：
 
@@ -58,7 +58,7 @@ Javascript文件（下面简称脚本文件）需要被HTML文件引用才能在
 
     将所有的`&lt;script&gt;`标签尽可能地放到`&lt;body&gt;`标签底部，尽量避免对页面其余部分下载及渲染的影响，效果图如下：
 
-    ![推荐做法](https://www.heekei.cn/wp-content/uploads/2016/01/logo.png)
+    ![图片失效]()
 
     对比上一张动态图，可以发现，**页面渲染要先于脚本文件的执行**，说明脚本文件不再阻塞页面渲染了（包括css文件和img等文件的下载）。
 

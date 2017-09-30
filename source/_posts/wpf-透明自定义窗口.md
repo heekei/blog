@@ -10,8 +10,6 @@ categories:
 date: 2016-01-02 17:07:00
 ---
 
-![Design-sketch](http://www.heekei.cn/wp-content/uploads/2016/01/Design-sketch.png "Design-sketch")
-
 重写了标题栏，最大化、还原、最小化功能。
 
 突然发现忘记加上程序的标题了，算了，懒得添加了。

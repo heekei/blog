@@ -7,9 +7,9 @@ mixin make_post(item, is_detail)
 				else
 					a(href= url_for(item.path))= item.title
 		if is_detail
-			.post-content.typo!= item.content
+			.post-content!= item.content
 		else
-			.post-content.typo
+			.post-content
 				- var summary = item.summary || item.content
 				p!= truncate(strip_html(summary), {length: 160})
 		.post-footer: .meta
