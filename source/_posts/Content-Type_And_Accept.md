@@ -4,6 +4,7 @@ categories:
   - web开发
 date: 2018-05-02 21:48:08
 tags:
+visible: hide
 ---
 
 首先要先介绍一下Http协议中的两个“头”，一个是`Request Header`，另一个是`Response Header`。
