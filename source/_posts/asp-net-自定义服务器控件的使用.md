@@ -11,15 +11,14 @@ date: 2016-01-13 09:10:56
 
 最近在做一个网站后台，想要用
 
-    &lt;xxx:xxx /&gt;
-    `</pre>
+> <xxx:xxx />
 
-    这种形式来直接读取数据库的数据，于是研究了一下自定义服务器控件。
-    首先，先新建一个WebCustomControl1类（WEB自定义服务器控件）
-    VS默认生成的代码如下：
-    <!--more-->
+这种形式来直接读取数据库的数据，于是研究了一下自定义服务器控件。
+首先，先新建一个WebCustomControl1类（WEB自定义服务器控件）
+VS默认生成的代码如下：
+<!--more-->
 
-    <pre>`using System;
+```using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
@@ -68,48 +67,53 @@ date: 2016-01-13 09:10:56
         }
     }
 
-    `</pre>
+```
 
-    于是，我们将改动一下默认的渲染方法：
+于是，我们将改动一下默认的渲染方法：
 
-    <pre>`        protected override void Render(HtmlTextWriter output)
-            {
-                output.Write(Text);
-            }
-    `</pre>
+```
+protected override void Render(HtmlTextWriter output)
+{
+     output.Write(Text);
+}
+```
 
-    这样的话，控件输出的内容就不包含标记了。
-    那么，如何输出其他的标记呢？
+这样的话，控件输出的内容就不包含标记了。
+那么，如何输出其他的标记呢？
 
-    <pre>`        protected override void Render(HtmlTextWriter output)
-            {
-                output.WriteBeginTag("a");//输出标记的开头
-                output.Write("这是一个标记");//输出标记的内容
-                output.WriteEndTag("a");//输出标记的结束符
-            }
-    `</pre>
+```
+protected override void Render(HtmlTextWriter output)
+{
+    output.WriteBeginTag("a");//输出标记的开头
+    output.Write("这是一个标记");//输出标记的内容
+    output.WriteEndTag("a");//输出标记的结束符
+}
+```
+这样运行的话，你会发现，html源码如下：
+```
+<a>这是一个标记</a>
+```
 
-    这样运行的话，你会发现，html源码如下：
 
-    <pre>`&lt;a&gt;这是一个标记&lt;/a&gt;
-    `</pre>
+到这里，控件的构建就完成了，但是，你要在ASPX页面中去使用它，还需要在前台页面注册它，表明它的命名空间，标记前缀等信息。
+回到开头那里的
 
-    到这里，控件的构建就完成了，但是，你要在ASPX页面中去使用它，还需要在前台页面注册它，表明它的命名空间，标记前缀等信息。
-    回到开头那里的
-
-    <pre>`[ToolboxData("&lt;{0}:WebCustomControl1 runat=server&gt;&lt;/{0}:WebCustomControl1&gt;")]
-    `</pre>
+```
+[ToolboxData("<{0}:WebCustomControl1 runat=server></{0}:WebCustomControl1>")]
+```
 
     {0}这个就是标记前缀字段
 
-    <pre>`//在前台页面重要写出：
-    &lt;%@ Register Assembly="UniversalWebSiteBg" Namespace="UniversalWebSiteBg" TagPrefix="UniBg" %&gt;
-    `</pre>
+```//在前台页面重要写出：
+    <%@ Register Assembly="UniversalWebSiteBg" Namespace="UniversalWebSiteBg" TagPrefix="UniBg" %>
+```
 
-    在这里，我写的标记前缀是  UniBg
-    于是，我在工具箱中拖动控件到页面中后，
-    会生成标记：
+在这里，我写的标记前缀是  UniBg
+于是，我在工具箱中拖动控件到页面中后，
+会生成标记：
 
-    <pre>`&lt;UniBg:WebCustomControl1 Id="WebCustomControl1" Text="" runat="server" /&gt;
+```
+<UniBg:WebCustomControl1 Id="WebCustomControl1" Text="" runat="server" />
+```
 
 于是这个简单的服务器控件就完成了。
