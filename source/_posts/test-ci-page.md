@@ -1,6 +1,6 @@
 ---
-title: test-ci-page
+title: 测试CI部署
 date: 2018-08-19 23:36:03
 tags:
 ---
-测试CI部署
+CI部署成功
