@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="庄希琦,heekei@foxmail.com"><title>Unix时间戳(Unix timestamp) · 庄希琦</title><meta name="description" content="如何在不同编程语言中获取现在的Unix时间戳(Unix timestamp)
+
+
+
+Java
+time
+
+JavaScript
+Math.round(new Date().getTime()/1000)getTime()返回数值的单位是毫秒
+
+Microsoft .NET / C#
+epoch = "><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/blog/css/style.css"><link rel="stylesheet" href="/blog/css/blog_basic.css"><link rel="stylesheet" href="/blog/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/blog/images/IMG_3242.JPG" style="width:127px;"><h3 title=""><a href="/blog">庄希琦</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/heekei" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="http://weibo.com/heekei" target="_blank"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/heekei" target="_blank"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/heekei" target="_blank"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/blog">首页</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/links">友链</a></li><li><a href="/blog/tools">工具</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/blog/images/IMG_3242.JPG"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Unix时间戳(Unix timestamp)</a></h3></div><div class="post-content"><p><div class="utddiv" style="font-weight: bold; color: #006aad;">如何在不同编程语言中获取现在的Unix时间戳(Unix timestamp)</div><br><a id="more"></a></p>
+<p><table style="color: #777777;"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Java</td></p>
+<p><td>time</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">JavaScript</td></p>
+<p><td>Math.round(new Date().getTime()/1000)<br>getTime()返回数值的单位是毫秒</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Microsoft .NET / C#</td></p>
+<p><td>epoch = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">MySQL</td></p>
+<p><td>SELECT unix_timestamp(now())</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Perl</td></p>
+<p><td>time</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PHP</td></p>
+<p><td>time()</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PostgreSQL</td></p>
+<p><td>SELECT extract(epoch FROM now())</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Python</td></p>
+<p><td>先 import time 然后 time.time()</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Ruby</td></p>
+<p><td>获取Unix时间戳：Time.now 或 Time.new<br>显示Unix时间戳：Time.now.to_i</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">SQL Server</td></p>
+<p><td>SELECT DATEDIFF(s, ‘1970-01-01 00:00:00’, GETUTCDATE())</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Unix / Linux</td></p>
+<p><td>date +%s</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">VBScript / ASP</td></p>
+<p><td>DateDiff(“s”, “01/01/1970 00:00:00”, Now())</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">其他操作系统<br>(如果Perl被安装在系统中)</td></p>
+<p><td>命令行状态：perl -e “print time”</td><br><br><br></p>
+<p><div class="utddiv" style="font-weight: bold; color: #006aad;">如何在不同编程语言中实现Unix时间戳(<em>Unix timestamp</em>) → 普通时间？</div></p>
+<p><table class="getcurrentunixtimetable" style="color: #777777;"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Java</td></p>
+<p><td>String date = new java.text.SimpleDateFormat(“dd/MM/yyyy HH:mm:ss”).format(new java.util.Date(<span style="text-decoration: underline;">Unix timestamp</span> * 1000))</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">JavaScript</td></p>
+<p><td>先 var unixTimestamp = new Date(<span style="text-decoration: underline;">Unix timestamp</span> * 1000) 然后commonTime = unixTimestamp.toLocaleString()</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Linux</td></p>
+<p><td>date -d @<span style="text-decoration: underline;">Unix timestamp</span></td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">MySQL</td></p>
+<p><td>from_unixtime(<span style="text-decoration: underline;">Unix timestamp</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Perl</td></p>
+<p><td>先 my $time = <span style="text-decoration: underline;">Unix timestamp</span> 然后 my ($sec, $min, $hour, $day, $month, $year) = (localtime($time))[0,1,2,3,4,5,6]</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PHP</td></p>
+<p><td>date(‘r’, <span style="text-decoration: underline;">Unix timestamp</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PostgreSQL</td></p>
+<p><td>SELECT TIMESTAMP WITH TIME ZONE ‘epoch’ + <span style="text-decoration: underline;">Unix timestamp</span>) * INTERVAL ‘1 second’;</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Python</td></p>
+<p><td>先 import time 然后 time.gmtime(<span style="text-decoration: underline;">Unix timestamp</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Ruby</td></p>
+<p><td>Time.at(<span style="text-decoration: underline;">Unix timestamp</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">SQL Server</td></p>
+<p><td>DATEADD(s, <span style="text-decoration: underline;">Unix timestamp</span>, ‘1970-01-01 00:00:00’)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">VBScript / ASP</td></p>
+<p><td>DateAdd(“s”, <span style="text-decoration: underline;">Unix timestamp</span>, “01/01/1970 00:00:00”)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">其他操作系统<br>(如果Perl被安装在系统中)</td></p>
+<p><td>命令行状态：perl -e “print scalar(localtime(<span style="text-decoration: underline;">Unix timestamp</span>))”</td><br><br><br></p>
+<p><div class="utddiv" style="font-weight: bold; color: #006aad;">如何在不同编程语言中实现普通时间 → Unix时间戳(<em>Unix timestamp</em>)？</div></p>
+<p><table style="color: #777777;"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Java</td></p>
+<p><td>long epoch = new java.text.SimpleDateFormat(“<span style="text-decoration: underline;">dd/MM/yyyy HH:mm:ss</span>“).parse(“01/01/1970 01:00:00”);</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">JavaScript</td></p>
+<p><td>var commonTime = new Date(Date.UTC(<span style="text-decoration: underline;">year</span>, <span style="text-decoration: underline;">month</span> - 1, <span style="text-decoration: underline;">day</span>, <span style="text-decoration: underline;">hour</span>,<span style="text-decoration: underline;">minute</span>, <span style="text-decoration: underline;">second</span>))</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">MySQL</td></p>
+<p><td>SELECT unix_timestamp(<span style="text-decoration: underline;">time</span>)<br>时间格式: YYYY-MM-DD HH:MM:SS 或 YYMMDD 或 YYYYMMDD</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Perl</td></p>
+<p><td>先 use Time::Local 然后 my $time = timelocal($sec, $min, $hour, $day, $month, $year);</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PHP</td></p>
+<p><td>mktime(<span style="text-decoration: underline;">hour</span>, <span style="text-decoration: underline;">minute</span>, <span style="text-decoration: underline;">second</span>, <span style="text-decoration: underline;">day</span>, <span style="text-decoration: underline;">month</span>, <span style="text-decoration: underline;">year</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">PostgreSQL</td></p>
+<p><td>SELECT extract(epoch FROM date(‘<span style="text-decoration: underline;">YYYY-MM-DD HH:MM:SS</span>‘));</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Python</td></p>
+<p><td>先 import time 然后 int(time.mktime(time.strptime(‘<span style="text-decoration: underline;">YYYY-MM-DD HH:MM:SS</span>‘, ‘%Y-%m-%d %H:%M:%S’)))</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Ruby</td></p>
+<p><td>Time.local(<span style="text-decoration: underline;">year</span>, <span style="text-decoration: underline;">month</span>, <span style="text-decoration: underline;">day</span>, <span style="text-decoration: underline;">hour</span>, <span style="text-decoration: underline;">minute</span>, <span style="text-decoration: underline;">second</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">SQL Server</td></p>
+<p><td>SELECT DATEDIFF(s, ‘1970-01-01 00:00:00’, <span style="text-decoration: underline;">time</span>)</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">Unix / Linux</td></p>
+<p><td>date +%s -d”Jan 1, 1970 00:00:01”</td><br></p>
+<p><tr></tr></p>
+<p><td class="uttd" style="font-weight: bold;">VBScript / ASP</td></p>
+<p><td>DateDiff(“s”, “01/01/1970 00:00:00”, <span style="text-decoration: underline;">time</span>)</td><br><br><br><br>转载自：<a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="noopener">http://tool.chinaz.com/Tools/unixtime.aspx</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2014-05-31</span><i class="fa fa-comment-o"></i><a href="/blog/2014/05/31/unix时间戳unix-timestamp/#comments">评论</a><i class="fa fa-tag"></i><a href="/blog/categories/C/" title="C#" class="tag">C# </a><a href="/blog/categories/C/web开发/" title="web开发" class="tag">web开发 </a><a href="/blog/tags/Perl/" title="Perl" class="tag">Perl </a><a href="/blog/tags/C/" title="C#" class="tag">C# </a><a href="/blog/tags/JAVA/" title="JAVA" class="tag">JAVA </a><a href="/blog/tags/PHP/" title="PHP" class="tag">PHP </a><a href="/blog/tags/ASP/" title="ASP" class="tag">ASP </a><a href="/blog/tags/JavaScript/" title="JavaScript" class="tag">JavaScript </a><a href="/blog/tags/MySQL/" title="MySQL" class="tag">MySQL </a><a href="/blog/tags/NET/" title=".NET" class="tag">.NET </a><a href="/blog/tags/PostgreSQL/" title="PostgreSQL" class="tag">PostgreSQL </a><a href="/blog/tags/Python/" title="Python" class="tag">Python </a><a href="/blog/tags/Ruby/" title="Ruby" class="tag">Ruby </a><a href="/blog/tags/SQL-Server/" title="SQL Server" class="tag">SQL Server </a><a href="/blog/tags/Unix/" title="Unix" class="tag">Unix </a><a href="/blog/tags/Linux/" title="Linux" class="tag">Linux </a><a href="/blog/tags/VBScript/" title="VBScript" class="tag">VBScript </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://heekei.github.io/blog/2014/05/31/unix时间戳unix-timestamp/,庄希琦,Unix时间戳(Unix timestamp),;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/blog/2014/08/28/asp-net-alert弹出提示信息的5种方法/" title="Asp.Net alert弹出提示信息的5种方法" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/blog/2014/05/31/aaa客户端/" title="【已失效】AAA客户端" class="btn">下一篇</a></li></ul></div><a id="comments"></a><div id="disqus_thread"></div><script>var disqus_shortname = 'heekei-blog';
+var disqus_identifier = '2014/05/31/unix时间戳unix-timestamp/';
+var disqus_title = 'Unix时间戳(Unix timestamp)';
+var disqus_url = 'http://heekei.github.io/blog/2014/05/31/unix时间戳unix-timestamp/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//heekei-blog.disqus.com/count.js" async></script></div></div></div></div><script src="/blog/js/jquery.js"></script><script src="/blog/js/jquery-migrate-1.2.1.min.js"></script><script src="/blog/js/jquery.appear.js"></script></body></html>

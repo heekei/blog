@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="庄希琦,heekei@foxmail.com"><title>Call a C# Method From JavaScript Hosted in a WebBrowser · 庄希琦</title><meta name="description" content="This demonstrates how you can call a C# method in a Windows Forms application from JavaScript that is hosted in a webpage inside a WebBrowser control "><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/blog/css/style.css"><link rel="stylesheet" href="/blog/css/blog_basic.css"><link rel="stylesheet" href="/blog/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/blog/images/IMG_3242.JPG" style="width:127px;"><h3 title=""><a href="/blog">庄希琦</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/heekei" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="http://weibo.com/heekei" target="_blank"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/heekei" target="_blank"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/heekei" target="_blank"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/blog">首页</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/links">友链</a></li><li><a href="/blog/tools">工具</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/blog/images/IMG_3242.JPG"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Call a C# Method From JavaScript Hosted in a WebBrowser</a></h3></div><div class="post-content"><blockquote>
+<p>This demonstrates how you can call a C# method in a Windows Forms application from JavaScript that is hosted in a webpage inside a WebBrowser control on your form.</p>
+</blockquote>
+<p>This sample demonstrates how to call C# from JavaScript. It also shows that parameters can be passed to C# methods.</p>
+<p>First, create a Windows Forms application. Then, add a WebBrowser control to your form. Then modify the code for the form so it looks like this:<br><a id="more"></a></p>
+<pre><code>namespace WindowsFormsApplication6
+{
+    // This first namespace is required for the ComVisible attribute used on the ScriptManager class.
+    using System.Runtime.InteropServices;
+    using System.Windows.Forms;
+
+    // This is your form.
+    public partial class Form1 : Form
+    {
+        // This nested class must be ComVisible for the JavaScript to be able to call it.
+        [ComVisible(true)]
+        public class ScriptManager
+        {
+            // Variable to store the form of type Form1.
+            private Form1 mForm;
+
+            // Constructor.
+            public ScriptManager(Form1 form)
+            {
+                // Save the form so it can be referenced later.
+                mForm = form;
+            }
+
+            // This method can be called from JavaScript.
+            public void MethodToCallFromScript()
+            {
+                // Call a method on the form.
+                mForm.DoSomething();
+            }
+
+            // This method can also be called from JavaScript.
+            public void AnotherMethod(string message)
+            {
+                MessageBox.Show(message);
+            }
+        }
+
+        // This method will be called by the other method (MethodToCallFromScript) that gets called by JavaScript.
+        public void DoSomething()
+        {
+            // Indicate success.
+            MessageBox.Show(&quot;It worked!&quot;);
+        }
+
+        // Constructor.
+        public Form1()
+        {
+            // Boilerplate code.
+            InitializeComponent();
+
+            // Set the WebBrowser to use an instance of the ScriptManager to handle method calls to C#.
+            webBrowser1.ObjectForScripting = new ScriptManager(this);
+
+            // Create the webpage.
+            webBrowser1.DocumentText = @&quot;&amp;lt;html&amp;gt;
+                &amp;lt;head&amp;gt;
+                    &amp;lt;title&amp;gt;Test&amp;lt;/title&amp;gt;
+                &amp;lt;/head&amp;gt;
+                &amp;lt;body&amp;gt;
+                &amp;lt;input type=&quot;&quot;button&quot;&quot; value=&quot;&quot;Go!&quot;&quot; onclick=&quot;&quot;window.external.MethodToCallFromScript();&quot;&quot; /&amp;gt;
+                    &amp;lt;br /&amp;gt;
+                    &amp;lt;input type=&quot;&quot;button&quot;&quot; value=&quot;&quot;Go Again!&quot;&quot; onclick=&quot;&quot;window.external.AnotherMethod(&apos;Hello&apos;);&quot;&quot; /&amp;gt;
+                &amp;lt;/body&amp;gt;
+                &amp;lt;/html&amp;gt;&quot;;
+        }
+    }
+}
+</code></pre><p>Note that your application may be part of a namespace other than WindowsFormsApplication6, but the rest of the code should work if you follow the above instructions explicitly. I created this tip/trick because somebody asked me a question and they didn’t understand this sample that I sent them to. This tip/trick makes the sample more understandable by fixing the two bugs I spotted, adding the using statements that weren’t mentioned, and by heavily commenting the code. Hopefully the rest of you will find this of use as well.</p>
+<p>Source:<a href="http://www.codeproject.com/Tips/130267/Call-a-C-Method-From-JavaScript-Hosted-in-a-WebBro" target="_blank" rel="noopener">http://www.codeproject.com/Tips/130267/Call-a-C-Method-From-JavaScript-Hosted-in-a-WebBro</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2015-12-20</span><i class="fa fa-comment-o"></i><a href="/blog/2015/12/20/call-a-c-method-from-javascript-hosted-in-a-webbrowser/#comments">评论</a><i class="fa fa-tag"></i><a href="/blog/categories/C/" title="C#" class="tag">C# </a><a href="/blog/categories/C/web开发/" title="web开发" class="tag">web开发 </a><a href="/blog/categories/C/web开发/程序设计/" title="程序设计" class="tag">程序设计 </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://heekei.github.io/blog/2015/12/20/call-a-c-method-from-javascript-hosted-in-a-webbrowser/,庄希琦,Call a C# Method From JavaScript Hosted in a WebBrowser,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/blog/2016/01/02/wpf-透明自定义窗口/" title="WPF 透明自定义窗口" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/blog/2015/11/24/无题-2/" title="无题" class="btn">下一篇</a></li></ul></div><a id="comments"></a><div id="disqus_thread"></div><script>var disqus_shortname = 'heekei-blog';
+var disqus_identifier = '2015/12/20/call-a-c-method-from-javascript-hosted-in-a-webbrowser/';
+var disqus_title = 'Call a C# Method From JavaScript Hosted in a WebBrowser';
+var disqus_url = 'http://heekei.github.io/blog/2015/12/20/call-a-c-method-from-javascript-hosted-in-a-webbrowser/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//heekei-blog.disqus.com/count.js" async></script></div></div></div></div><script src="/blog/js/jquery.js"></script><script src="/blog/js/jquery-migrate-1.2.1.min.js"></script><script src="/blog/js/jquery.appear.js"></script></body></html>
